@@ -1,0 +1,2326 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StockDll</name>
+    </assembly>
+    <members>
+        <member name="T:StockDll.StrToPinyin">
+            <summary>
+            拼音转换类
+            </summary>
+        </member>
+        <member name="M:StockDll.StrToPinyin.GetChineseSpell(System.String)">
+            <summary> 
+            获得一个字符串的汉语拼音码 
+            </summary> 
+            <param name="strText">字符串</param> 
+            <returns>汉语拼音码,该字符串只包含大写的英文字母</returns> 
+        </member>
+        <member name="T:StockDll.RcvDataEventArgs">
+            <summary>
+            接口事件数据基类（提供消息ID,和驱动路径扩展）
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvDataEventArgs.Msg">
+            <summary>
+            消息ID
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvDataEventArgs.DrvPath">
+            <summary>
+            驱动路径
+            </summary>
+        </member>
+        <member name="T:StockDll.ConvertTime">
+            <summary>
+            时间转换类。
+            </summary>
+        </member>
+        <member name="M:StockDll.ConvertTime.#ctor">
+            <summary> 
+            Private constructor to prevent the class from being instantiated. 
+            </summary> 
+        </member>
+        <member name="M:StockDll.ConvertTime.ToDateTime(System.Int32)">
+            <summary> 
+            time_t is an int representing the number of seconds since Midnight UTC 1 Jan 1970 on the Gregorian Calendar. 
+            </summary> 
+            <param name="time_t"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:StockDll.ConvertTime.To_time_t(System.DateTime)">
+            <summary> 
+            time_t is an int representing the number of seconds since Midnight UTC 1 Jan 1970 on the Gregorian Calendar. 
+            </summary> 
+            <param name="time"></param> 
+            <returns></returns> 
+        </member>
+        <member name="T:StockDll.StructRcvHistory">
+            <summary>
+            补历史K线数据结构体
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Time">
+             <summary>
+             时间
+             </summary>
+            <remarks>
+            (time_t格式）
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Open">
+            <summary>
+            开盘价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.High">
+            <summary>
+            最高价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Low">
+            <summary>
+            最低价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Close">
+            <summary>
+            收盘价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Volume">
+            <summary>
+            成交量
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Amount">
+            <summary>
+            成交额
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Advance">
+            <summary>
+            涨数
+            </summary>
+            <remarks>
+            仅大盘有效
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Decline">
+            <summary>
+            跌数
+            </summary>
+            <remarks>
+            仅大盘有效
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Length">
+            <summary>
+            数据长度
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.HeadTag">
+             <summary>
+            数据头标示
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvHistory.Market">
+            <summary>
+            证券市场
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvHistory.MarketType">
+            <summary>
+            市场类型
+            </summary>
+            <remarks>
+            SH,SZ仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvHistory.StockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvHistory.MarketStockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            包含市场类型
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvHistory.IsTag">
+            <summary>
+            是否数据包头
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvHistory.DTime">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            DateTime格式
+            </remarks>
+        </member>
+        <member name="T:StockDll.StructRcvEkeHead">
+            <summary>
+            数据头结构定义
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvEkeHead.HeadTag">
+             <summary>
+            数据包头
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvEkeHead.Market">
+            <summary>
+            证券市场
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvEkeHead.Label">
+            <summary>
+            证券代码
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvEkeHead.MarketType">
+            <summary>
+            市场类型（SH,SZ)
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvEkeHead.StockCode">
+            <summary>
+            股票代码
+            </summary>
+        </member>
+        <member name="T:StockDll.StructRcvMinute">
+            <summary>
+            补分钟数据结构体
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvMinute.Time">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            time_t格式
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvMinute.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvMinute.Volume">
+            <summary>
+            成交量
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvMinute.Amount">
+            <summary>
+            成交额
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvMinute.Length">
+             <summary>
+             数据长度
+             </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvMinute.HeadTag">
+             <summary>
+            数据头标示
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvMinute.Market">
+            <summary>
+            证券市场
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvMinute.MarketType">
+            <summary>
+            市场类型
+            </summary>
+            <remarks>
+            SH,SZ仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvMinute.StockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvMinute.MarketStockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            包含市场类型
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvMinute.DTime">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            DateTime格式
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvMinute.IsTag">
+            <summary>
+            是否数据包头
+            </summary>
+        </member>
+        <member name="T:StockDll.StructRcvPower">
+            <summary>
+            补除权数据结构体
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvPower.Time">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            time_t格式
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvPower.Give">
+            <summary>
+            每股送
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvPower.Pei">
+            <summary>
+            每股配
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvPower.Peiprice">
+            <summary>
+            配股价
+            </summary>
+            <remarks>
+            仅当 m_fPei != 0.0f 时有效
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvPower.Profit">
+            <summary>
+            每股红利
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvPower.Length">
+            <summary>
+            数据长度
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvPower.HeadTag">
+             <summary>
+            数据头标示
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvPower.Market">
+            <summary>
+            证券市场
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvPower.MarketType">
+            <summary>
+            市场类型
+            </summary>
+            <remarks>
+            SH,SZ 仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvPower.StockCode">
+            <summary>
+            获取股票代码
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvPower.MarketStockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            包含市场类型
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvPower.IsTag">
+            <summary>
+            是否数据包头
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvPower.DTime">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            DateTime格式
+            </remarks>
+        </member>
+        <member name="T:StockDll.StructRcvFileHead">
+            <summary>
+            文件头结构体定义
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvFileHead.Attrib">
+            <summary>
+            文件子类型
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvFileHead.Len">
+            <summary>
+            文件长度
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvFileHead.SerialNo">
+            <summary>
+            序列号
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvFileHead.FileName">
+            <summary>
+            文件名 or URL
+            </summary>
+        </member>
+        <member name="T:StockDll.StructFin">
+            <summary>
+            银江财务数据结构体
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Market">
+            <summary>
+            市场类型
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.N1">
+            <summary>
+            保留字段
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Label">
+            <summary>
+            股票代码
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Bgrq">
+            <summary>
+             财务数据的日期
+            </summary>
+            <remarks>
+            如半年报 季报等 如 20090630 表示 2009年半年报
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructFin.Zgb">
+            <summary>
+            总股本
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Gjg">
+            <summary>
+            国家股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Fqrfrg">
+            <summary>
+            发起人法人股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Frg">
+            <summary>
+            法人股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Bgs">
+            <summary>
+            B股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Hgs">
+            <summary>
+            H股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Mqlt">
+            <summary>
+            目前流通
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Zgg">
+            <summary>
+            职工股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.A2zpg">
+            <summary>
+            A2转配股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Zzc">
+            <summary>
+            总资产(千元)
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Ldzc">
+            <summary>
+            流动资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Gdzc">
+            <summary>
+            固定资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Wxzc">
+            <summary>
+            无形资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Cqtz">
+            <summary>
+            长期投资
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Ldfz">
+             <summary>
+            流动负债
+             </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Cqfz">
+            <summary>
+            长期负债
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Zbgjj">
+            <summary>
+            资本公积金
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Mggjj">
+            <summary>
+            每股公积金
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Gdqy">
+            <summary>
+            股东权益
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Zysr">
+            <summary>
+            主营收入
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Zylr">
+            <summary>
+            主营利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Qtlr">
+            <summary>
+            其他利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Yylr">
+            <summary>
+            营业利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Tzsy">
+            <summary>
+            投资收益
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Btsr">
+            <summary>
+            补贴收入
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Yywsz">
+            <summary>
+            营业外收支
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Snsytz">
+            <summary>
+            上年损益调整
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Lrze">
+            <summary>
+            利润总额
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Shlr">
+            <summary>
+            税后利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Jlr">
+            <summary>
+            净利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Wfplr">
+            <summary>
+            未分配利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Mgwfp">
+            <summary>
+            每股未分配
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Mgsy">
+            <summary>
+            每股收益
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Mgjzc">
+            <summary>
+            每股净资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Tzmgjzc">
+            <summary>
+            调整每股净资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Gdqyb">
+            <summary>
+            股东权益比
+            </summary>
+        </member>
+        <member name="F:StockDll.StructFin.Jzcsyl">
+            <summary>
+            净资产收益率
+            </summary>
+        </member>
+        <member name="P:StockDll.StructFin.StockCode">
+            <summary>
+            股票代码
+            </summary>
+        </member>
+        <member name="P:StockDll.StructFin.MarketType">
+            <summary>
+            市场类型
+            </summary>
+            <remarks>
+            SH,SZ
+            </remarks>
+        </member>
+        <member name="T:StockDll.StructSTKFin">
+            <summary>
+            红茶财务数据结构体
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Time">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Zgb">
+            <summary>
+             总股本
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Gjg">
+            <summary>
+            国家股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Fqrfrg">
+            <summary>
+            发起法人股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Frg">
+            <summary>
+            法人股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Bgs">
+            <summary>
+            B股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Hgs">
+            <summary>
+            H股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Ags">
+            <summary>
+            流通A股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Zgg">
+            <summary>
+            职工股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.A2zpg">
+            <summary>
+            A2转配股
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Zzc">
+            <summary>
+            总资产（千元）
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Ldzc">
+            <summary>
+            流动资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Gdzc">
+            <summary>
+            固定资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Wxzc">
+            <summary>
+            无形资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Cqtz">
+            <summary>
+            长期资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Ldfz">
+            <summary>
+            流动负债
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Cqfz">
+            <summary>
+            长期负债
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Zbgjj">
+            <summary>
+            资本公积金
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Mggjj">
+            <summary>
+            每股公积金
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Gdqy">
+            <summary>
+            股东权益
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Zysr">
+            <summary>
+            主营收入
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Zylr">
+            <summary>
+            主营利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Qtlr">
+            <summary>
+            其他利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Yylr">
+            <summary>
+            营业利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Tzsy">
+            <summary>
+            投资收益
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Btsr">
+            <summary>
+            补贴收入
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Yywsz">
+            <summary>
+            营业外收支
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Snsytz">
+            <summary>
+            损益调整
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Lrze">
+            <summary>
+            利润总额
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Yszkzzl">
+            <summary>
+            应收帐款周转率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Jlr">
+            <summary>
+             净利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Wfplr">
+            <summary>
+            未分配利润
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Mgwfp">
+            <summary>
+             每股未分配
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Mgsy">
+            <summary>
+            每股收益
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Mgjzc">
+            <summary>
+            每股净资产
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Tzmgjzc">
+            <summary>
+            调整每股净资
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Gdqyb">
+            <summary>
+            股东权益比率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Jzcsyl">
+            <summary>
+            净资收益率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Jyxjlc">
+            <summary>
+            经营现金流出
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Jyxjlr">
+            <summary>
+            经营现金流入
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.fJyxjll">
+            <summary>
+            经营现金流量
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Tzxjlr">
+            <summary>
+            投资现金流入
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Tzxjlc">
+            <summary>
+            投资现金流出
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Tzxjll">
+            <summary>
+            投资现金流量
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Czxjlr">
+            <summary>
+            筹资现金流入
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Czxjlc">
+            <summary>
+            筹资现金流出
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Czxjll">
+            <summary>
+            筹资现金流量
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Xjdjw">
+            <summary>
+            现金及等价物
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Yszzzl">
+            <summary>
+            应收帐周转率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Chzzl">
+            <summary>
+            存货周转率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Gdzs">
+            <summary>
+            股东总数
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Fxj">
+            <summary>
+            发行价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Fxl">
+            <summary>
+            发行量
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Zyywzzl">
+            <summary>
+            主营业务增长率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Shlyl">
+            <summary>
+            税后利润增长率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Jzczzl">
+            <summary>
+            净资产增长率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Zzczzl">
+            <summary>
+             总资产增长率
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Length">
+            <summary>
+            数据长度
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructSTKFin.HeadTag">
+             <summary>
+            数据头标示
+             </summary>
+        </member>
+        <member name="F:StockDll.StructSTKFin.Market">
+            <summary>
+            证券市场
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKFin.MarketType">
+            <summary>
+            市场类型
+            </summary>
+            <remarks>
+            SH,SZ仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKFin.StockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKFin.MarketStockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            包含市场类型
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKFin.IsTag">
+            <summary>
+            是否数据包头
+            </summary>
+        </member>
+        <member name="T:StockDll.StructSTKEkeHead">
+            <summary>
+            红茶接口数据包头
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKEkeHead.Headtag">
+            <summary>
+            数据包头
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKEkeHead.Flag">
+            <summary>
+            标识（暂未使用)
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKEkeHead.Market">
+            <summary>
+            证券市场
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKEkeHead.Label">
+            <summary>
+            代码
+            </summary>
+        </member>
+        <member name="T:StockDll.StructRcvReport">
+            <summary>
+            实时行情数据
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.Size">
+            <summary>
+            结构大小
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.Time">
+            <summary>
+            成交时间
+            </summary>
+            <remarks>
+            time_t格式
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructRcvReport.Market">
+            <summary>
+            股票市场类型
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.LabelName">
+            <summary>
+            股票代码及名称
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.LastClose">
+            <summary>
+            昨收
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.Open">
+            <summary>
+            开盘价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.High">
+            <summary>
+            最高价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.Low">
+            <summary>
+            最低价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.NewPrice">
+            <summary>
+            最新价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.Volume">
+             <summary>
+            成交量
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.Amount">
+            <summary>
+            成交额
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyPrice1">
+            <summary>
+            申买价1
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyPrice2">
+             <summary>
+            申买价2
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyPrice3">
+            <summary>
+            申买价3
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyVolume1">
+             <summary>
+            申买量1
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyVolume2">
+            <summary>
+            申买量2
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyVolume3">
+             <summary>
+            申买量3
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellPrice1">
+             <summary>
+            申卖价1
+             </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellPrice2">
+            <summary>
+            申卖价2
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellPrice3">
+            <summary>
+            申卖价3
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellVolume1">
+            <summary>
+            申卖量1
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellVolume2">
+            <summary>
+            申卖量2
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellVolume3">
+            <summary>
+            申卖量3
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyPrice4">
+            <summary>
+            申买价4
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyVolume4">
+            <summary>
+            申买量4
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellPrice4">
+            <summary>
+            申卖价4
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellVolume4">
+            <summary>
+            申卖量4
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyPrice5">
+            <summary>
+            申买价5
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.BuyVolume5">
+            <summary>
+            申买量5
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellPrice5">
+            <summary>
+            申卖价5
+            </summary>
+        </member>
+        <member name="F:StockDll.StructRcvReport.SellVolume5">
+            <summary>
+            申卖量5
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.MarketType">
+            <summary>
+            市场类型
+            </summary>
+            <remarks>
+            SH,SZ
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvReport.StockCode">
+            <summary>
+            股票代码
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.MarketStockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            包含市场类型
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvReport.StockName">
+            <summary>
+            股票名称
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.StockPinYin">
+            <summary>
+            名称拼音
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.StockType">
+            <summary>
+            股票类型
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.DTime">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            DateTime格式
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructRcvReport.ZD">
+            <summary>
+            涨跌
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.ZF">
+            <summary>
+            振幅
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.ZDF">
+            <summary>
+            涨跌幅
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.IsSuspension">
+            <summary>
+            是否停牌
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.IsST">
+            <summary>
+            是否ST股
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.IsHarden">
+            <summary>
+            是否涨停
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.HardenPrice">
+            <summary>
+            涨停价
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.LimitDownPrice">
+            <summary>
+            跌停价
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.IsLimitDown">
+            <summary>
+            是否跌停
+            </summary>
+        </member>
+        <member name="P:StockDll.StructRcvReport.IsCYB">
+            <summary>
+            是否创业板
+            </summary>
+        </member>
+        <member name="T:StockDll.StockType">
+            <summary>
+            股票类型（基金，债券，指数等）
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SHA">
+            <summary>
+            上证A股
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SZA">
+            <summary>
+            深证A股
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SHB">
+            <summary>
+            上证B股
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SZB">
+            <summary>
+            深证B股
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SHZQ">
+            <summary>
+            上证债券
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SHZZ">
+            <summary>
+            上证转债
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SZZQ">
+            <summary>
+            深证债券
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SZZZ">
+            <summary>
+            深证转债
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SHJJ">
+            <summary>
+            上证基金
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SZJJ">
+            <summary>
+            深证基金
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.KFJJ">
+            <summary>
+            开放基金
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.HSQZ">
+            <summary>
+            沪深权证
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SHZS">
+            <summary>
+            上证指数
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SZZS">
+            <summary>
+            深证指数
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.EIFJJ">
+            <summary>
+            EIF基金
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.SanBan">
+            <summary>
+            三板
+            </summary>
+        </member>
+        <member name="F:StockDll.StockType.UnDefine">
+            <summary>
+            未定义
+            </summary>
+        </member>
+        <member name="T:StockDll.RCVDATA">
+            <summary>
+            数据通知消息
+            </summary>
+        </member>
+        <member name="F:StockDll.RCVDATA.DataType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="F:StockDll.RCVDATA.PacketNum">
+            <summary>
+            记录数
+            </summary>
+        </member>
+        <member name="F:StockDll.RCVDATA.File">
+            <summary>
+            文件接口
+            </summary>
+        </member>
+        <member name="F:StockDll.RCVDATA.DISK">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:StockDll.RCVDATA.ptr">
+            <summary>
+            数据指针
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvFenBi">
+            <summary>
+            银江分笔结构体定义
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.Time">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.High">
+            <summary>
+            最高
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.Low">
+            <summary>
+            最低
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.Newprice">
+            <summary>
+            最新
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.Volume">
+            <summary>
+            成交量
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.Amount">
+            <summary>
+            成交额
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.Stroke">
+            <summary>
+            保留字段
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyPrice1">
+            <summary>
+            申买价1
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyPrice2">
+            <summary>
+            申买价2
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyPrice3">
+            <summary>
+            申买价3
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyPrice4">
+            <summary>
+            申买价4
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyPrice5">
+            <summary>
+            申买价5
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyVolume1">
+            <summary>
+            申买量1
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyVolume2">
+            <summary>
+            申买量2
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyVolume3">
+            <summary>
+             申买量3
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyVolume4">
+            <summary>
+             申买量4
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.BuyVolume5">
+            <summary>
+            申买量5
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellPrice1">
+            <summary>
+            申卖价1
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellPrice2">
+            <summary>
+            申卖价2
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellPrice3">
+            <summary>
+             申卖价3
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellPrice4">
+            <summary>
+             申卖价4
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellPrice5">
+            <summary>
+             申卖价5
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellVolume1">
+            <summary>
+             申卖量1
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellVolume2">
+            <summary>
+            申卖量2
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellVolume3">
+            <summary>
+            申卖量3
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellVolume4">
+            <summary>
+            申卖量4
+            </summary>
+        </member>
+        <member name="F:StockDll.RcvFenBi.SellVolume5">
+            <summary>
+            申卖量5
+            </summary>
+        </member>
+        <member name="T:StockDll.StructSTKLOGINAUTH">
+            <summary>
+            红茶接口登录返回信息
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKLOGINAUTH.bAuthorizationState">
+            <summary>
+            登录状态
+            </summary>
+            <remarks>
+            成功返回1，失败返回0
+            </remarks>
+        </member>
+        <member name="T:StockDll.StructSTKLABEL">
+            <summary>
+            证券代码表结构体定义
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKLABEL.Market">
+            <summary>
+            证券市场
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKLABEL.LabelName">
+            <summary>
+            股票代码名称
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKLABEL.PingYing">
+            <summary>
+            拼音
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKLABEL.LastClose">
+            <summary>
+            昨收
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKLABEL.Time">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            time_t格式
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKLABEL.MarketType">
+            <summary>
+            市场类型
+            </summary>
+            <remarks>
+            SH,SZ
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKLABEL.DTime">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            DateTime格式
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKLABEL.StockCode">
+            <summary>
+            股票代码
+            </summary>
+        </member>
+        <member name="P:StockDll.StructSTKLABEL.MarketStockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            包含市场类型
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKLABEL.StockName">
+            <summary>
+            股票名称
+            </summary>
+        </member>
+        <member name="T:StockDll.STKDATA">
+            <summary>
+            红茶接口数据结构体定义
+            </summary>
+        </member>
+        <member name="F:StockDll.STKDATA.DataType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="F:StockDll.STKDATA.PacketNum">
+            <summary>
+            记录数
+            </summary>
+        </member>
+        <member name="F:StockDll.STKDATA.Ptr">
+            <summary>
+            数据指针
+            </summary>
+        </member>
+        <member name="T:StockDll.StructSTKTICK">
+            <summary>
+            红茶分笔结构体定义
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKTICK.Time">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            time_t格式
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructSTKTICK.NewPrice">
+            <summary>
+            最新价
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKTICK.Volume">
+            <summary>
+            成交量
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKTICK.Amount">
+            <summary>
+            成交金额
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKTICK.Price">
+            <summary>
+            价格
+            </summary>
+        </member>
+        <member name="F:StockDll.StructSTKTICK.Length">
+            <summary>
+            数据长度
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="F:StockDll.StructSTKTICK.HeadTag">
+             <summary>
+            数据头标示
+             </summary>
+        </member>
+        <member name="F:StockDll.StructSTKTICK.Market">
+            <summary>
+            证券市场
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKTICK.DTime">
+            <summary>
+            时间
+            </summary>
+            <remarks>
+            DateTime格式
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKTICK.MarketType">
+            <summary>
+            市场类型
+            </summary>
+            <remarks>
+            SH,SZ,仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKTICK.StockCode">
+            <summary>
+            获取股票代码
+            </summary>
+            <remarks>
+            仅当IsTag为真时有效
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKTICK.MarketStockCode">
+            <summary>
+            股票代码
+            </summary>
+            <remarks>
+            包含市场类型
+            </remarks>
+        </member>
+        <member name="P:StockDll.StructSTKTICK.IsTag">
+            <summary>
+            是否数据包头
+            </summary>
+        </member>
+        <member name="T:StockDll.STKMessageType">
+            <summary>
+            红茶接口消息类型定义
+            </summary>
+        </member>
+        <member name="T:StockDll.RequestType">
+            <summary>
+            红茶接口双向数据请求类型
+            </summary>
+        </member>
+        <member name="F:StockDll.RequestType.StkRequestTick">
+            <summary>
+            分笔数据
+            </summary>
+        </member>
+        <member name="F:StockDll.RequestType.StkRequestMin1">
+            <summary>
+            1分钟数据
+            </summary>
+        </member>
+        <member name="F:StockDll.RequestType.StkRequestMin5">
+            <summary>
+            5分钟数据
+            </summary>
+        </member>
+        <member name="F:StockDll.RequestType.StkRequestDay">
+            <summary>
+            日线数据
+            </summary>
+        </member>
+        <member name="T:StockDll.IStockService">
+            <summary>
+            接口数据服务类
+            </summary>
+        </member>
+        <member name="M:StockDll.IStockService.Init">
+            <summary>
+            初始化接口
+            </summary>
+        </member>
+        <member name="M:StockDll.IStockService.Init(System.String,System.Int32)">
+            <summary>
+            初始化接口
+            </summary>
+            <param name="DrvPath">调用的DLL路径</param>
+            <param name="Msg">消息ID</param>
+        </member>
+        <member name="M:StockDll.IStockService.GetFin(System.String)">
+            <summary>
+            根据Fin文件路径,获取财务数据
+            </summary>
+            <param name="FilePath">Fin文件路径</param>
+            <returns>银江财务数据结构体</returns>
+        </member>
+        <member name="M:StockDll.IStockService.Quit">
+            <summary>
+            关闭所有接口
+            </summary>
+        </member>
+        <member name="M:StockDll.IStockService.Quit(System.Int32)">
+            <summary>
+            关闭消息对应的接口
+            </summary>
+            <param name="Msg">消息ID</param>
+        </member>
+        <member name="M:StockDll.IStockService.RequestData(System.String,System.String,StockDll.RequestType)">
+            <summary>
+            红茶接口请求数据
+            </summary>
+            <param name="Market">市场类型（HS,SZ)</param>
+            <param name="szCode">证券代码</param>
+            <param name="nType">请求数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcv5Minute">
+            <summary>
+            收到5分钟数据
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvBase">
+            <summary>
+            收到基础资料
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvHistory">
+            <summary>
+            收到历史K线数据
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvMinute">
+            <summary>
+            收到一分钟数据
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvNew">
+            <summary>
+            收到新闻
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvPower">
+            <summary>
+            收到除权数据
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvReport">
+            <summary>
+            收到行情数据
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvSTKFin">
+            <summary>
+            收到红茶财务数据
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvSTKTick">
+            <summary>
+            收到红茶分笔数据
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnLoginAuth">
+            <summary>
+            收到红茶接口登录信息
+            </summary>
+        </member>
+        <member name="E:StockDll.IStockService.OnRcvSTKLabel">
+            <summary>
+            收到红茶接口证券代码表
+            </summary>
+        </member>
+        <member name="T:StockDll.StockMessageWrapper">
+            <summary>
+            接口消息数据处理包装类
+            </summary>
+        </member>
+        <member name="F:StockDll.StockMessageWrapper.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.GetFin(System.String)">
+            <summary>
+            根据传入的文件路径，获取财务数据，适用银江。
+            </summary>
+            <param name="FilePath"></param>
+            <returns></returns>
+        </member>
+        <member name="F:StockDll.StockMessageWrapper._STKExtents">
+            <summary>
+            红茶接口扩展消息类型
+            </summary>
+        </member>
+        <member name="F:StockDll.StockMessageWrapper._TongShiMessageTypes">
+            <summary>
+            通视消息类型
+            </summary>
+        </member>
+        <member name="F:StockDll.StockMessageWrapper._TongShiFileTypes">
+            <summary>
+            通视文件类型（新闻，基础资料，补日线，补分钟等）
+            </summary>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.Init">
+            <summary>
+             初始化接口
+            </summary>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.Init(System.String,System.Int32)">
+            <summary>
+            初始化接口
+            </summary>
+            <param name="DrvPath">接口路径</param>
+            <param name="Msg">消息ID</param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            消息处理函数
+            </summary>
+            <param name="m"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoTongShi(System.Windows.Forms.Message)">
+            <summary>
+            处理通视规范数据
+            </summary>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVREPORT(StockDll.RCVDATA,System.Int32)">
+            <summary>
+            处理接收行情
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVFILEDATA(StockDll.RCVDATA,System.Int32)">
+            <summary>
+            处理接收文件（历史K线，分钟，5分钟，除权，新闻等）
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVFENBIDATA(StockDll.YJFenBi,System.Int32)">
+            <summary>
+            处理银江补分笔
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVFILEBASE(System.Int32,System.IntPtr,StockDll.StructRcvFileHead)">
+            <summary>
+            处理接收基本资料
+            </summary>
+            <param name="Msg"></param>
+            <param name="DataPtr"></param>
+            <param name="FileHead"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVFILENEWS(System.Int32,System.IntPtr,StockDll.StructRcvFileHead)">
+            <summary>
+            处理接收新闻数据
+            </summary>
+            <param name="Msg"></param>
+            <param name="DataPtr"></param>
+            <param name="FileHead"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVFILEFINANCE(System.Int32,System.IntPtr,System.Int32)">
+            <summary>
+            处理财务信息（红茶接口改动后，已不调用）
+            </summary>
+            <param name="Msg"></param>
+            <param name="DataPtr"></param>
+            <param name="PacketNum"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVFILEPOWER(System.Int32,System.IntPtr,System.Int32)">
+            <summary>
+            处理补除权数据
+            </summary>
+            <param name="Msg"></param>
+            <param name="DataPtr"></param>
+            <param name="PacketNum"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVFILEMINUTE(System.Int32,System.IntPtr,System.Int32)">
+            <summary>
+            处理补分钟数据
+            </summary>
+            <param name="Msg"></param>
+            <param name="DataPtr"></param>
+            <param name="PacketNum"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRCVFILEHISTORY(System.Int32,System.IntPtr,System.Int32)">
+            <summary>
+            处理补历史K线数据
+            </summary>
+            <param name="Msg"></param>
+            <param name="DataPtr"></param>
+            <param name="PacketNum"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoRcvFILE5MINUTE(System.Int32,System.IntPtr,System.Int32)">
+            <summary>
+            处理补5分钟数据
+            </summary>
+            <param name="Msg"></param>
+            <param name="DataPtr"></param>
+            <param name="PacketNum"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoSTKExtents(System.Windows.Forms.Message)">
+            <summary>
+            处理红茶接口扩充数据
+            </summary>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessageLoginAuth(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理登录信息
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessageStkLabel(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理红茶代码表数据
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessageReport(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理红茶实时行情数据
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessageMinute5(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理红茶补5分钟数据
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessageMinute1(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理红茶补1分钟数据
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessagePower(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理红茶除权数据
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessageHistory(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理红茶补历史K线数据
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessageTick(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理红茶分笔数据
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.DoStkMessageFinance(StockDll.STKDATA,System.Int32)">
+            <summary>
+            处理红茶补财务数据
+            </summary>
+            <param name="Data"></param>
+            <param name="Msg"></param>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.RequestData(System.String,System.String,StockDll.RequestType)">
+            <summary>
+            双向请求数据接口
+            </summary>
+            <param name="Market">市场类型，HS,SZ</param>
+            <param name="szCode">请求股票代码</param>
+            <param name="nType">请求数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.RequestData(System.Int32,System.String,System.String,StockDll.RequestType)">
+            <summary>
+            双向请求数据接口
+            </summary>
+            <param name="Msg">消息ID</param>
+            <param name="Market">市场类型</param>
+            <param name="szCode">请求股票代码</param>
+            <param name="nType">请求数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.Quit">
+            <summary>
+            关闭接口
+            </summary>
+        </member>
+        <member name="M:StockDll.StockMessageWrapper.Quit(System.Int32)">
+            <summary>
+            关闭Msg相对应的接口
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvReport">
+            <summary>
+            收到实时行情
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvMinute">
+            <summary>
+            收到分钟数据
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvPower">
+            <summary>
+            收到除权数据
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvHistory">
+            <summary>
+            收到历史日线数据
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcv5Minute">
+            <summary>
+            补5分钟数据
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvBase">
+            <summary>
+            收到基本资料
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvNew">
+            <summary>
+            收到新闻资料
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvSTKFin">
+            <summary>
+            收到红茶飞狐财务数据
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvSTKTick">
+            <summary>
+            收到红茶补分笔数据
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnLoginAuth">
+            <summary>
+            红茶接口登录事件
+            </summary>
+        </member>
+        <member name="E:StockDll.StockMessageWrapper.OnRcvSTKLabel">
+            <summary>
+            收到红茶接口代码表
+            </summary>
+        </member>
+        <member name="T:StockDll.StockMessageWrapper.InitDelegate">
+            <summary>
+            初始化数据接口委托
+            </summary>
+            <param name="hwnd"></param>
+            <param name="wMsg"></param>
+            <param name="nWorkMode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StockDll.StockMessageWrapper.RequestDataDelegate">
+            <summary>
+            请求数据委托
+            </summary>
+            <param name="Market"></param>
+            <param name="sszCode"></param>
+            <param name="nType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StockDll.StockMessageWrapper.QuitDelegate">
+            <summary>
+            关闭数据接口委托
+            </summary>
+            <param name="hwnd"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StockDll.RcvReportEventArgs">
+            <summary>
+            实时行情事件数据类
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvReportEventArgs.RcvReports">
+            <summary>
+            行情数据
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvHistoryEventArgs">
+            <summary>
+            补历史K线事件数据类。
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvHistoryEventArgs.RcvHistorys">
+            <summary>
+            获取或设置历史K线数据
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvMinuteEventArgs">
+            <summary>
+            补1分钟事件数据类
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvMinuteEventArgs.RcvMinutes">
+            <summary>
+            一分钟数据
+            </summary>
+        </member>
+        <member name="T:StockDll.Rcv5MinuteEventArgs">
+            <summary>
+            补5分钟事件数据类
+            </summary>
+        </member>
+        <member name="P:StockDll.Rcv5MinuteEventArgs.RcvHistorys">
+            <summary>
+            5分钟数据
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvPowerEventArgs">
+            <summary>
+            补除权事件数据类
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvPowerEventArgs.RcvPowers">
+            <summary>
+            除权数据
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvSTKTickEventArgs">
+            <summary>
+            补红茶分笔事件数据类
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvSTKTickEventArgs.StkTicks">
+            <summary>
+            分笔数据
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvSTKFinEventArgs">
+            <summary>
+            补红茶财务事件数据类
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvSTKFinEventArgs.RcvFins">
+            <summary>
+            财务数据
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvBaseEventArgs">
+            <summary>
+            收到基本资料数据事件类
+            </summary>
+        </member>
+        <member name="M:StockDll.RcvBaseEventArgs.#ctor(StockDll.StructRcvFileHead,System.Byte[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="FILEHEAD">文件头</param>
+            <param name="Data">数据</param>
+        </member>
+        <member name="P:StockDll.RcvBaseEventArgs.FileHead">
+            <summary>
+            获取文件头
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvBaseEventArgs.Data">
+            <summary>
+            获取数据
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvBaseEventArgs.Content">
+            <summary>
+            获取数据内容
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvNewEventArgs">
+            <summary>
+            收到新闻数据事件类
+            </summary>
+        </member>
+        <member name="M:StockDll.RcvNewEventArgs.#ctor(StockDll.StructRcvFileHead,System.Byte[])">
+            <summary>
+            构造函数
+            </summary>
+            <param name="FILEHEAD">文件头</param>
+            <param name="Data">数据</param>
+        </member>
+        <member name="P:StockDll.RcvNewEventArgs.FileHead">
+            <summary>
+            文件头
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvNewEventArgs.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvNewEventArgs.Content">
+            <summary>
+            数据内容
+            </summary>
+        </member>
+        <member name="T:StockDll.RcvSTKLabelEventArgs">
+            <summary>
+            收到证券代码表事件类
+            </summary>
+        </member>
+        <member name="P:StockDll.RcvSTKLabelEventArgs.RcvStkLabels">
+            <summary>
+            获取代码表数组
+            </summary>
+        </member>
+        <member name="T:StockDll.LoginAuthEventArgs">
+            <summary>
+            红茶接口登录事件数据类
+            </summary>
+        </member>
+        <member name="M:StockDll.LoginAuthEventArgs.#ctor(StockDll.StructSTKLOGINAUTH)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="stkLoginAuth">登录状态(1表示登录成功）</param>
+        </member>
+        <member name="P:StockDll.LoginAuthEventArgs.StkLoginAuth">
+            <summary>
+            获取登录状态
+            </summary>
+        </member>
+        <member name="T:StockDll.StockServiceFactory">
+            <summary>
+            接口服务实例化工厂类
+            </summary>
+        </member>
+        <member name="M:StockDll.StockServiceFactory.CreateStockService">
+            <summary>
+            创建接口数据服务对象
+            </summary>
+            <returns>数据服务对象</returns>
+        </member>
+    </members>
+</doc>
