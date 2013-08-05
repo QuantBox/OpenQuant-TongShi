@@ -23,6 +23,8 @@ namespace QuantBox.OQ.TongShi
         private const string CATEGORY_TIME = "Settings - Time";
         private const string CATEGORY_OTHER = "Settings - Other";
 
-
+        [Category(CATEGORY_OTHER)]
+        [Editor(typeof(System.Windows.Forms.Design.FileNameEditor), typeof(System.Drawing.Design.UITypeEditor))]
+        public string StockDllPath { get; set; }
     }
 }

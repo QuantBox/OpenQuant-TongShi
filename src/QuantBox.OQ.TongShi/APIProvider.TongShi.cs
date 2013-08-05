@@ -307,12 +307,14 @@ namespace QuantBox.OQ.TongShi
                 ChangeStatus(ProviderStatus.LoggedIn);
                 isConnected = true;
                 EmitConnectedEvent();
+                mdlog.Info("登录成功！");
             }
             else
             {
                 ChangeStatus(ProviderStatus.Disconnected);
                 isConnected = false;
                 EmitDisconnectedEvent();
+                mdlog.Error("登录失败！");
             }
         }
         
