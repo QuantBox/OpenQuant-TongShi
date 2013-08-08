@@ -1,11 +1,14 @@
 ﻿using SmartQuant.FIX;
 using StockDll;
 using System;
+using NLog;
 
 namespace QuantBox.OQ.TongShi
 {
     public class StructRcvReportEx
     {
+        private static readonly Logger mdlog = LogManager.GetLogger("TongShi.M");
+
         string[,] CodeCover = {
                                     {"1A0001","000001"},
                                     {"1A0002","000002"},
@@ -77,30 +80,37 @@ namespace QuantBox.OQ.TongShi
         private string GetSecurityTypeSS(string stockCode)
         {
             string securityType = FIXSecurityType.NoSecurityType;
-            int i = Convert.ToInt32(stockCode.Substring(0, 3));
-            if (i == 0)
+            try
             {
-                securityType = FIXSecurityType.Index;
+                int i = Convert.ToInt32(stockCode.Substring(0, 3));
+                if (i == 0)
+                {
+                    securityType = FIXSecurityType.Index;
+                }
+                else if (i < 399)
+                {
+                    securityType = FIXSecurityType.USTreasuryBond;
+                }
+                else if (i < 599)
+                {
+                    securityType = FIXSecurityType.USTreasuryBond;
+                }
+                else if (i < 699)
+                {
+                    securityType = FIXSecurityType.CommonStock;
+                }
+                else if (i < 700)
+                {
+                    securityType = FIXSecurityType.ExchangeTradedFund;
+                }
+                else
+                {
+                    securityType = FIXSecurityType.CommonStock;
+                }
             }
-            else if (i < 399)
+            catch(Exception ex)
             {
-                securityType = FIXSecurityType.USTreasuryBond;
-            }
-            else if (i < 599)
-            {
-                securityType = FIXSecurityType.USTreasuryBond;
-            }
-            else if (i < 699)
-            {
-                securityType = FIXSecurityType.CommonStock;
-            }
-            else if (i < 700)
-            {
-                securityType = FIXSecurityType.ExchangeTradedFund;
-            }
-            else
-            {
-                securityType = FIXSecurityType.CommonStock;
+                mdlog.Warn("异常信息：{0}, 代码名：{1}", ex.Message, stockCode);
             }
 
             return securityType;
