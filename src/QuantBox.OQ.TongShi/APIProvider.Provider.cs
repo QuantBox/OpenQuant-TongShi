@@ -127,21 +127,22 @@ namespace QuantBox.OQ.TongShi
             InitStockService();
             try
             {
-                mdlog.Info("正在启动【默认的】通视接口……");
+                mdlog.Info("正在启动【设置的】通视接口……");
                 if (StockService != null)
-                    StockService.Init();
+                    StockService.Init(StockDllPath, 2000);
             }
-            catch(Exception ex)
+            catch (Exception e)
             {
-                mdlog.Warn(ex.Message);
+                mdlog.Warn(e.Message);
                 try
                 {
-                    mdlog.Info("正在启动【设置的】通视接口……");
-                    StockService.Init(StockDllPath, 2000);
+                    mdlog.Info("正在启动【默认的】通视接口……");
+                    if (StockService != null)
+                        StockService.Init();
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    mdlog.Warn(e.Message);
+                    mdlog.Warn(ex.Message);
                     mdlog.Info("请检查是否安装好对应的接口,或StockDllPath设置是否正确");
                 }
             }

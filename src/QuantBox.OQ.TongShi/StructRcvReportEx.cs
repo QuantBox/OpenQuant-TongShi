@@ -58,11 +58,11 @@ namespace QuantBox.OQ.TongShi
 
         private string GetYahooSecurityExchange(string MarketType)
         {
-            if (MarketType == "SZ")
+            if (MarketType == "SH")
             {
-                return "SZ";
+                return "SS";
             }
-            return "SS";
+            return MarketType;
         }
 
         private string GetSecurityType()
@@ -71,10 +71,11 @@ namespace QuantBox.OQ.TongShi
             {
                 return GetSecurityTypeSZ(newSymbol);
             }
-            else
+            else if (yahooExchange == "SS")
             {
                 return GetSecurityTypeSS(newSymbol);
             }
+            return FIXSecurityType.CommonStock;
         }
 
         private string GetSecurityTypeSS(string stockCode)
