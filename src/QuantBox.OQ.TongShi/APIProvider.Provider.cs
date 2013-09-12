@@ -130,6 +130,10 @@ namespace QuantBox.OQ.TongShi
                 mdlog.Info("正在启动【设置的】通视接口……");
                 if (StockService != null)
                     StockService.Init(StockDllPath, 2000);
+
+                ChangeStatus(ProviderStatus.LoggedIn);
+                isConnected = true;
+                EmitConnectedEvent();
             }
             catch (Exception e)
             {
@@ -139,6 +143,10 @@ namespace QuantBox.OQ.TongShi
                     mdlog.Info("正在启动【默认的】通视接口……");
                     if (StockService != null)
                         StockService.Init();
+
+                    ChangeStatus(ProviderStatus.LoggedIn);
+                    isConnected = true;
+                    EmitConnectedEvent();
                 }
                 catch (Exception ex)
                 {

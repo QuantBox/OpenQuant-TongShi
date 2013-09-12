@@ -47,7 +47,7 @@ namespace QuantBox.OQ.TongShi
             {
                 for (int i = 0; i < 15; ++i)
                 {
-                    if (symbol.CompareTo(CodeCover[i,0]) == 0)
+                    if (symbol.CompareTo(CodeCover[i, 0]) == 0)
                     {
                         return CodeCover[i, 1];
                     }
@@ -109,7 +109,7 @@ namespace QuantBox.OQ.TongShi
                     securityType = FIXSecurityType.CommonStock;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 mdlog.Warn("异常信息：{0}, 代码名：{1}", ex.Message, stockCode);
             }
@@ -120,35 +120,43 @@ namespace QuantBox.OQ.TongShi
         private string GetSecurityTypeSZ(string stockCode)
         {
             string securityType = FIXSecurityType.NoSecurityType;
-            int i = Convert.ToInt32(stockCode.Substring(0, 2));
-            if (i < 10)
+            try
             {
-                securityType = FIXSecurityType.CommonStock;
+                int i = Convert.ToInt32(stockCode.Substring(0, 2));
+                if (i < 10)
+                {
+                    securityType = FIXSecurityType.CommonStock;
+                }
+                else if (i < 15)
+                {
+                    securityType = FIXSecurityType.USTreasuryBond;
+                }
+                else if (i < 20)
+                {
+                    securityType = FIXSecurityType.ExchangeTradedFund;
+                }
+                else if (i < 30)
+                {
+                    securityType = FIXSecurityType.CommonStock;
+                }
+                else if (i < 39)
+                {
+                    securityType = FIXSecurityType.CommonStock;
+                }
+                else if (i == 39)
+                {
+                    securityType = FIXSecurityType.Index;
+                }
+                else
+                {
+                    securityType = FIXSecurityType.NoSecurityType;
+                }
             }
-            else if (i < 15)
+            catch (Exception ex)
             {
-                securityType = FIXSecurityType.USTreasuryBond;
+                mdlog.Warn("异常信息：{0}, 代码名：{1}", ex.Message, stockCode);
             }
-            else if (i < 20)
-            {
-                securityType = FIXSecurityType.ExchangeTradedFund;
-            }
-            else if (i < 30)
-            {
-                securityType = FIXSecurityType.CommonStock;
-            }
-            else if (i < 39)
-            {
-                securityType = FIXSecurityType.CommonStock;
-            }
-            else if (i == 39)
-            {
-                securityType = FIXSecurityType.Index;
-            }
-            else
-            {
-                securityType = FIXSecurityType.NoSecurityType;
-            }
+
             return securityType;
         }
     }

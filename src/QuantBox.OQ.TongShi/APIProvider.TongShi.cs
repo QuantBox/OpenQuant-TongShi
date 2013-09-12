@@ -277,16 +277,10 @@ namespace QuantBox.OQ.TongShi
             StringBuilder Builder = new StringBuilder();
             if (e.StkLoginAuth.bAuthorizationState == 1)
             {
-                ChangeStatus(ProviderStatus.LoggedIn);
-                isConnected = true;
-                EmitConnectedEvent();
                 mdlog.Info("登录成功！");
             }
             else
             {
-                ChangeStatus(ProviderStatus.Disconnected);
-                isConnected = false;
-                EmitDisconnectedEvent();
                 mdlog.Error("登录失败！");
             }
         }
